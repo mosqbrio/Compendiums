@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\jquery-ui.css" />
+    <Content Include="FM.aspx" />
     <Content Include="img\logo.png" />
     <Content Include="img\noimg.png" />
     <Content Include="img\refresh.png" />
@@ -129,6 +130,13 @@
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FM.aspx.cs">
+      <DependentUpon>FM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FM.aspx.designer.cs">
+      <DependentUpon>FM.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -32,7 +32,7 @@ namespace Compendiums
             if (!IsPostBack)
             {
                 
-                SqlCommand permiss = new SqlCommand("SELECT COUNT(*) FROM CompendiumsPermission WHERE Account2000 = '" + Context.User.Identity.Name + "';", conn);
+                SqlCommand permiss = new SqlCommand("SELECT COUNT(*) FROM Permission WHERE Account2000 = '" + Context.User.Identity.Name + "' AND AppName='Compendiums';", conn);
                 int permiss_count = Convert.ToInt32(permiss.ExecuteScalar());
                 if (permiss_count == 0)
                 {
@@ -42,9 +42,9 @@ namespace Compendiums
                 else
                 {
                     
-                    SqlCommand comm = new SqlCommand("SELECT Permission FROM CompendiumsPermission WHERE Account2000 = '" + Context.User.Identity.Name + "';", conn);
+                    SqlCommand comm = new SqlCommand("SELECT Permission FROM Permission WHERE Account2000 = '" + Context.User.Identity.Name + "' AND AppName='Compendiums';", conn);
                     String Permission = Convert.ToString(comm.ExecuteScalar());
-                    SqlCommand DC_comm = new SqlCommand("SELECT (CASE WHEN x.OfficeID=0 then 'ALL' else y.Office end)'Office' FROM CompendiumsPermission x LEFT JOIN DC y ON y.OfficeID=x.OfficeID WHERE Account2000 = '" + Context.User.Identity.Name + "';", conn);
+                    SqlCommand DC_comm = new SqlCommand("SELECT (CASE WHEN x.OfficeID=0 then 'ALL' else y.Office end)'Office' FROM Permission x LEFT JOIN DC y ON y.OfficeID=x.OfficeID WHERE Account2000 = '" + Context.User.Identity.Name + "' AND AppName='Compendiums';", conn);
                     String DC = Convert.ToString(DC_comm.ExecuteScalar());
 
                     Session["DC"] = DC;
@@ -97,7 +97,7 @@ namespace Compendiums
             
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CompendiumsConnectionString1"].ConnectionString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT x.Account,x.Account2000,x.Permission,x.OfficeID,(CASE WHEN x.OfficeID=0 then 'ALL' else y.Office end)'Office',x.LastLogin FROM CompendiumsPermission x LEFT JOIN DC y ON y.OfficeID=x.OfficeID WHERE x.OfficeID=0 ORDER BY Permission;", con);
+            SqlCommand cmd = new SqlCommand("SELECT x.Account,x.Account2000,x.Permission,x.OfficeID,(CASE WHEN x.OfficeID=0 then 'ALL' else y.Office end)'Office',x.LastLogin FROM Permission x LEFT JOIN DC y ON y.OfficeID=x.OfficeID WHERE x.OfficeID=0 AND AppName='Compendiums' ORDER BY Permission;", con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -154,7 +154,7 @@ namespace Compendiums
             //    }
             //}
             
-            SqlCommand comme = new SqlCommand("UPDATE CompendiumsPermission SET Permission='" + ddleditPermission + "', OfficeID=" + ddleditOffice + " WHERE Account='" + lblAccount + "';", conn);
+            SqlCommand comme = new SqlCommand("UPDATE Permission SET Permission='" + ddleditPermission + "', OfficeID=" + ddleditOffice + " WHERE Account='" + lblAccount + "' AND AppName='Compendiums';", conn);
             comme.ExecuteNonQuery();
             
             //SqlCommand Log_comme = new SqlCommand("INSERT INTO Logs (Date,Type,Modification,ModifiedBy) VALUES ('" + DateTime.Now + "', 'UPDATE USER',  'Updated user [" + lblAccount + "] to Permission=" + ddleditPermission + ", Office=" + ddleditOffice + ", Team=" + ddleditTeam + "', '" + Context.User.Identity.Name + "')", conn);
@@ -174,7 +174,7 @@ namespace Compendiums
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CompendiumsConnectionString1"].ConnectionString);
             conn.Open();
             
-            SqlCommand comme = new SqlCommand("DELETE FROM CompendiumsPermission WHERE Account='" + lblAccount + "';", conn);
+            SqlCommand comme = new SqlCommand("DELETE FROM Permission WHERE Account='" + lblAccount + "' AND AppName='Compendiums';", conn);
             comme.ExecuteNonQuery();
                 //SqlCommand Log_comme = new SqlCommand("INSERT INTO Logs (Date,Type,Modification,ModifiedBy) VALUES ('" + DateTime.Now + "', 'REMOVE USER',  'Removed user [" + lblAccount + "]', '" + Context.User.Identity.Name + "')", conn);
                 //Log_comme.ExecuteNonQuery();
@@ -324,7 +324,7 @@ namespace Compendiums
                 conn.Open();
             if (Pass == true)
             {
-                SqlCommand account_comm = new SqlCommand("Select Count(*) FROM CompendiumsPermission WHERE Account = '" + username.Text + "';", conn);
+                SqlCommand account_comm = new SqlCommand("Select Count(*) FROM Permission WHERE Account = '" + username.Text + "' AND AppName='Compendiums';", conn);
                 int account = Convert.ToInt32(account_comm.ExecuteScalar());
 
                 if (account > 0)
@@ -350,7 +350,7 @@ namespace Compendiums
                     user2000 = un;
                 }
 
-                SqlCommand comm = new SqlCommand("INSERT INTO CompendiumsPermission (Account,Account2000,Permission,OfficeID) VALUES ('" + un + "', '" + user2000 + "', '" + ddlPermission.SelectedItem + "', '" + ddlDC.SelectedValue + "')", conn);
+                SqlCommand comm = new SqlCommand("INSERT INTO Permission (AppName,Account,Account2000,Permission,OfficeID) VALUES ('Compendiums','" + un + "', '" + user2000 + "', '" + ddlPermission.SelectedItem + "', '" + ddlDC.SelectedValue + "')", conn);
                 comm.ExecuteNonQuery();
                 //SqlCommand Log_comme = new SqlCommand("INSERT INTO Logs (Date,Type,Modification,ModifiedBy) VALUES ('" + DateTime.Now + "', 'ADD USER',  'Added user [" + un + "] to Permission=" + ddlPermission.SelectedItem + ", Office=" + ddlDC.SelectedItem + ", Team=" + Team + "', '" + Context.User.Identity.Name + "')", conn);
                 //Log_comme.ExecuteNonQuery();

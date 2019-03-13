@@ -19,7 +19,7 @@ namespace Compendiums
 {
     using System.IO;
 
-    public partial class Default : System.Web.UI.Page
+    public partial class FM : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -402,7 +402,7 @@ namespace Compendiums
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     //cmd.CommandText = "SELECT TOP (10) [Account]'Item' FROM [Operation].[dbo].[PrepTrackerPermission] WHERE Account LIKE '%'+@Search+'%'";
-                    cmd.CommandText = "SELECT TOP(10) (CASE WHEN [No_ 2] != '' THEN No_+' - '+[No_ 2]+' - '+[Description] COLLATE DATABASE_DEFAULT ELSE No_+' - '+[Description] COLLATE DATABASE_DEFAULT END)'Item' FROM [SUNBASKET_1000_TEST].[dbo].[Receiving$Item] WHERE No_ LIKE '2%' AND Blocked=0 AND (No_ LIKE '%'+@Search+'%' OR LOWER([No_ 2]) LIKE '%'+@Search+'%' OR LOWER([Description]) LIKE '%'+@Search+'%')";
+                    cmd.CommandText = "SELECT TOP(10) (CASE WHEN [No_ 2] != '' THEN No_+' - '+[No_ 2]+' - '+[Description] COLLATE DATABASE_DEFAULT ELSE No_+' - '+[Description] COLLATE DATABASE_DEFAULT END)'Item' FROM [SUNBASKET_1000_TEST].[dbo].[Receiving$Item] WHERE No_ LIKE '4%' AND Blocked=0 AND (No_ LIKE '%'+@Search+'%' OR LOWER([No_ 2]) LIKE '%'+@Search+'%' OR LOWER([Description]) LIKE '%'+@Search+'%')";
                     cmd.Connection = con;
                     con.Open();
                     cmd.Parameters.AddWithValue("@Search", item.ToLower());

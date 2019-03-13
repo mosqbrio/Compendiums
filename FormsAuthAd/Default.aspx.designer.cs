@@ -40,6 +40,15 @@ namespace Compendiums {
         protected global::System.Web.UI.WebControls.LinkButton Compendiums_R;
         
         /// <summary>
+        /// FMlb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton FMlb;
+        
+        /// <summary>
         /// Manage_Users control.
         /// </summary>
         /// <remarks>

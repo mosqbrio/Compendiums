@@ -74,6 +74,9 @@
                         <li class="nav-item">
                             <asp:LinkButton ID="Compendiums_R" class="nav-link" runat="server" href="Default.aspx">Compendiums</asp:LinkButton>
                         </li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="FMlb" class="nav-link" runat="server" href="FM.aspx">FM Compendiums</asp:LinkButton>
+                        </li>
                         <li class="nav-item active">
                             <asp:LinkButton ID="Manage_Users" class="manuser-active" runat="server" href="User.aspx">Manage Users<span class="sr-only">(current)</span></asp:LinkButton>
                         </li>

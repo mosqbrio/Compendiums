@@ -52,7 +52,7 @@ namespace Compendiums
 
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["CompendiumsConnectionString1"].ConnectionString);
                 conn.Open();
-                SqlCommand comm = new SqlCommand("SELECT COUNT(*) FROM CompendiumsPermission WHERE Account ='" + username + "';", conn);
+                SqlCommand comm = new SqlCommand("SELECT COUNT(*) FROM Permission WHERE Account ='" + username + "' AND AppName='Compendiums';", conn);
                 Int32 count = Convert.ToInt32(comm.ExecuteScalar());
                 conn.Close(); //close the connection
                 if (count == 0)
@@ -68,7 +68,7 @@ namespace Compendiums
             DateTime today = DateTime.Now;
             SqlConnection conndate = new SqlConnection(ConfigurationManager.ConnectionStrings["CompendiumsConnectionString1"].ConnectionString);
             conndate.Open();
-            SqlCommand commdate = new SqlCommand("UPDATE CompendiumsPermission SET LastLogin='" + today + "' WHERE Account = '" + username + "';", conndate);
+            SqlCommand commdate = new SqlCommand("UPDATE Permission SET LastLogin='" + today + "' WHERE Account = '" + username + "' AND AppName='Compendiums';", conndate);
             commdate.ExecuteScalar();
             conndate.Close(); //close the connection
             return "true";

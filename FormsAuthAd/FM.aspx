@@ -1,4 +1,4 @@
-﻿<%@ Page Language="c#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Compendiums.Default" %>
+﻿<%@ Page Language="c#" AutoEventWireup="true" CodeBehind="FM.aspx.cs" Inherits="Compendiums.FM" %>
 
 <%@ Import Namespace="System.Security.Principal" %>
 
@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title>Compendiums</title>
+    <title>FM Compendiums</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -37,7 +37,7 @@
                     $.ajax({  
                         type: "POST",  
                         contentType: "application/json; charset=utf-8",  
-                        url: "Default.aspx/GetItems",  
+                        url: "FM.aspx/GetItems",  
                         data: "{'item':'" + $('#txtItem').val() + "'}",  
                         dataType: "json",  
                         success: function(data) {  
@@ -91,11 +91,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <asp:LinkButton ID="Compendiums_R" class="nav-link" runat="server" href="Default.aspx">Compendiums<span class="sr-only">(current)</span></asp:LinkButton>
-                        </li>
                         <li class="nav-item">
-                            <asp:LinkButton ID="FMlb" class="nav-link" runat="server" href="FM.aspx">FM Compendiums</asp:LinkButton>
+                            <asp:LinkButton ID="Compendiums_R" class="nav-link" runat="server" href="Default.aspx">Compendiums</asp:LinkButton>
+                        </li>
+                        <li class="nav-item active">
+                            <asp:LinkButton ID="FMlb" class="nav-link" runat="server" href="FM.aspx">FM Compendiums<span class="sr-only">(current)</span></asp:LinkButton>
                         </li>
                         <li class="nav-item">
                             <asp:LinkButton ID="Manage_Users" class="manuser-link" runat="server" href="User.aspx">Manage Users</asp:LinkButton>
