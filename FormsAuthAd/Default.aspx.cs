@@ -101,42 +101,48 @@ namespace Compendiums
             try
             {
                 string sql = @"SELECT (x.[No_]+' — '+x.[Description])'Item',convert(decimal(8,2), x.[Quantity])'Quantity',x.[Unit of Measure Code]'UOM',
-                            (CASE WHEN x.[Unit of Measure Code]='LB' THEN x.[Quantity]*453.59
-                            WHEN x.[Unit of Measure Code]='OZ' THEN x.[Quantity]*28.35
-                            WHEN x.[Unit of Measure Code]='KG' THEN x.[Quantity]*1000
-                            WHEN x.[Unit of Measure Code]='G' THEN x.[Quantity]
-                            WHEN x.[Unit of Measure Code]='GL' AND y.UOM='TSP' THEN x.[Quantity]*768*y.Grams_UOM
-                            WHEN x.[Unit of Measure Code]='LT' AND y.UOM='TSP' THEN x.[Quantity]*202.88*y.Grams_UOM
-                            WHEN x.[Unit of Measure Code]='QT' AND y.UOM='TSP' THEN x.[Quantity]*192*y.Grams_UOM
-                            WHEN x.[Unit of Measure Code]='CUP' AND y.UOM='TSP' THEN x.[Quantity]*48*y.Grams_UOM
-                            WHEN x.[Unit of Measure Code]='FLOZ' AND y.UOM='TSP' THEN x.[Quantity]*6*y.Grams_UOM
-                            WHEN x.[Unit of Measure Code]='TSP' AND y.UOM='TSP' THEN x.[Quantity]*y.Grams_UOM
-                            ELSE -1 END)'G',
-                            (CASE WHEN x.[Unit of Measure Code]='LB' AND y.UOM='TSP' THEN (x.[Quantity]*453.59)/y.Grams_UOM
-                            WHEN x.[Unit of Measure Code]='OZ' AND y.UOM='TSP' THEN (x.[Quantity]*28.35)/y.Grams_UOM
-                            WHEN x.[Unit of Measure Code]='KG' AND y.UOM='TSP' THEN (x.[Quantity]*1000)/y.Grams_UOM
-                            WHEN x.[Unit of Measure Code]='G' AND y.UOM='TSP' THEN x.[Quantity]/y.Grams_UOM
-                            WHEN x.[Unit of Measure Code]='GL' THEN x.[Quantity]*768
-                            WHEN x.[Unit of Measure Code]='LT' THEN x.[Quantity]*202.88
-                            WHEN x.[Unit of Measure Code]='QT' THEN x.[Quantity]*192
-                            WHEN x.[Unit of Measure Code]='CUP' THEN x.[Quantity]*48
-                            WHEN x.[Unit of Measure Code]='FLOZ' THEN x.[Quantity]*6
-                            WHEN x.[Unit of Measure Code]='TSP' THEN x.[Quantity]
-                            ELSE -1 END)'TSP',
-                            (CASE WHEN x.[Unit of Measure Code]='LB' THEN 'LB'
-                            WHEN x.[Unit of Measure Code]='OZ' THEN 'LB'
-                            WHEN x.[Unit of Measure Code]='KG' THEN 'LB'
-                            WHEN x.[Unit of Measure Code]='G' THEN 'LB'
-                            WHEN x.[Unit of Measure Code]='GL' THEN 'QT'
-                            WHEN x.[Unit of Measure Code]='LT' THEN 'QT'
-                            WHEN x.[Unit of Measure Code]='QT' THEN 'QT'
-                            WHEN x.[Unit of Measure Code]='CUP' THEN 'QT'
-                            WHEN x.[Unit of Measure Code]='FLOZ' THEN 'QT'
-                            WHEN x.[Unit of Measure Code]='TSP' THEN 'QT'
-                            ELSE 'LB' END)'DDL'
-                            FROM [SUNBASKET_1000_TEST].[dbo].[Receiving$Production BOM Line] x
-                            LEFT JOIN [SUNBASKET_1000_TEST].[dbo].[Receiving$Item] y ON y.No_=x.No_
-                            WHERE x.[Production BOM No_]='" + item+"'";
+MAX(CASE WHEN x.[Unit of Measure Code]='LB' THEN x.[Quantity]*453.59
+WHEN x.[Unit of Measure Code]='OZ' THEN x.[Quantity]*28.35
+WHEN x.[Unit of Measure Code]='KG' THEN x.[Quantity]*1000
+WHEN x.[Unit of Measure Code]='G' THEN x.[Quantity]
+WHEN x.[Unit of Measure Code]='GL' AND y.UOM='TSP' THEN x.[Quantity]*768*y.Grams_UOM
+WHEN x.[Unit of Measure Code]='LT' AND y.UOM='TSP' THEN x.[Quantity]*202.88*y.Grams_UOM
+WHEN x.[Unit of Measure Code]='QT' AND y.UOM='TSP' THEN x.[Quantity]*192*y.Grams_UOM
+WHEN x.[Unit of Measure Code]='CUP' AND y.UOM='TSP' THEN x.[Quantity]*48*y.Grams_UOM
+WHEN x.[Unit of Measure Code]='FLOZ' AND y.UOM='TSP' THEN x.[Quantity]*6*y.Grams_UOM
+WHEN x.[Unit of Measure Code]='TSP' AND y.UOM='TSP' THEN x.[Quantity]*y.Grams_UOM
+WHEN x.[Unit of Measure Code]='PORTION' AND z.Code='G' THEN x.[Quantity]*z.[Qty_ per Unit of Measure]
+WHEN x.[Unit of Measure Code]='CT' AND z.Code='OZ' THEN x.[Quantity]*z.[Qty_ per Unit of Measure]*28.35
+ELSE -1 END)'G',
+MAX(CASE WHEN x.[Unit of Measure Code]='LB' AND y.UOM='TSP' THEN (x.[Quantity]*453.59)/y.Grams_UOM
+WHEN x.[Unit of Measure Code]='OZ' AND y.UOM='TSP' THEN (x.[Quantity]*28.35)/y.Grams_UOM
+WHEN x.[Unit of Measure Code]='KG' AND y.UOM='TSP' THEN (x.[Quantity]*1000)/y.Grams_UOM
+WHEN x.[Unit of Measure Code]='G' AND y.UOM='TSP' THEN x.[Quantity]/y.Grams_UOM
+WHEN x.[Unit of Measure Code]='GL' THEN x.[Quantity]*768
+WHEN x.[Unit of Measure Code]='LT' THEN x.[Quantity]*202.88
+WHEN x.[Unit of Measure Code]='QT' THEN x.[Quantity]*192
+WHEN x.[Unit of Measure Code]='CUP' THEN x.[Quantity]*48
+WHEN x.[Unit of Measure Code]='FLOZ' THEN x.[Quantity]*6
+WHEN x.[Unit of Measure Code]='TSP' THEN x.[Quantity]
+WHEN x.[Unit of Measure Code]='PORTION' AND z.Code='G' AND y.UOM='TSP' THEN (x.[Quantity]*z.[Qty_ per Unit of Measure])/y.Grams_UOM
+WHEN x.[Unit of Measure Code]='CT' AND z.Code='OZ' AND y.UOM='TSP' THEN (x.[Quantity]*z.[Qty_ per Unit of Measure]*28.35)/y.Grams_UOM
+ELSE -1 END)'TSP',
+(CASE WHEN x.[Unit of Measure Code]='LB' THEN 'LB'
+WHEN x.[Unit of Measure Code]='OZ' THEN 'LB'
+WHEN x.[Unit of Measure Code]='KG' THEN 'LB'
+WHEN x.[Unit of Measure Code]='G' THEN 'LB'
+WHEN x.[Unit of Measure Code]='GL' THEN 'QT'
+WHEN x.[Unit of Measure Code]='LT' THEN 'QT'
+WHEN x.[Unit of Measure Code]='QT' THEN 'QT'
+WHEN x.[Unit of Measure Code]='CUP' THEN 'QT'
+WHEN x.[Unit of Measure Code]='FLOZ' THEN 'QT'
+WHEN x.[Unit of Measure Code]='TSP' THEN 'QT'
+ELSE 'LB' END)'DDL'
+FROM [SUNBASKET_1000_TEST].[dbo].[Receiving$Production BOM Line] x
+LEFT JOIN [SUNBASKET_1000_TEST].[dbo].[Receiving$Item] y ON y.No_=x.No_
+LEFT JOIN [SUNBASKET_1000_TEST].[dbo].[Receiving$Item Unit of Measure] z ON z.[Item No_]=x.No_
+WHERE x.[Production BOM No_]='" + item + @"'
+GROUP BY x.No_,x.Description,x.Quantity,x.[Unit of Measure Code]";
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CompendiumsConnectionString2"].ConnectionString);
                 con.Open();
                 SqlCommand cmd = new SqlCommand(sql, con);
