@@ -69,20 +69,12 @@ namespace Compendiums
                         txtVisual.CssClass = "wh100 txtdisable input";
                         txtTasting.CssClass = "wh100 txtdisable input";
                         txtOther.CssClass = "wh100 txtdisable input";
-                        //txtMethod.Visible = false;
-                        //lblMethod.Visible = true;
-                        //txtVisual.Visible = false;
-                        //lblVisual.Visible = true;
-                        //txtTasting.Visible = false;
-                        //lblTasting.Visible = true;
-                        //txtOther.Visible = false;
-                        //lblOther.Visible = true;
                         btnUpdate.Visible = false;
-                        fuTop.Visible = false;
-                        fuSide.Visible = false;
-                        fuSmear.Visible = false;
-                        lbtnTop.Visible = false;
-                        lbtnSide.Visible = false;
+                        //fuTop.Visible = false;
+                        //fuSide.Visible = false;
+                        //fuSmear.Visible = false;
+                        //lbtnTop.Visible = false;
+                        //lbtnSide.Visible = false;
                         lbtnSmear.Visible = false;
                     }else if(Permission == "Kitchen")
                     {
@@ -235,22 +227,22 @@ GROUP BY x.No_,x.Description,x.Quantity,x.[Unit of Measure Code]";
                 con.Close();
                 Random rnd = new Random();
                 int random = rnd.Next(10000, 99999);
-                if (File.Exists(Server.MapPath("photo/" + item + "-top.jpg")))
-                {
-                    imgTop.ImageUrl = "photo/" + item + "-top.jpg?" + random;
-                }
-                else
-                {
-                    imgTop.ImageUrl = "img/noimg.png";
-                }
-                if (File.Exists(Server.MapPath("photo/" + item + "-side.jpg")))
-                {
-                    imgSide.ImageUrl = "photo/" + item + "-side.jpg?" + random;
-                }
-                else
-                {
-                    imgSide.ImageUrl = "img/noimg.png";
-                }
+                //if (File.Exists(Server.MapPath("photo/" + item + "-top.jpg")))
+                //{
+                //    imgTop.ImageUrl = "photo/" + item + "-top.jpg?" + random;
+                //}
+                //else
+                //{
+                //    imgTop.ImageUrl = "img/noimg.png";
+                //}
+                //if (File.Exists(Server.MapPath("photo/" + item + "-side.jpg")))
+                //{
+                //    imgSide.ImageUrl = "photo/" + item + "-side.jpg?" + random;
+                //}
+                //else
+                //{
+                //    imgSide.ImageUrl = "img/noimg.png";
+                //}
                 if (File.Exists(Server.MapPath("photo/" + item + "-smear.jpg")))
                 {
                     imgSmear.ImageUrl = "photo/" + item + "-smear.jpg?" + random;
@@ -277,86 +269,86 @@ GROUP BY x.No_,x.Description,x.Quantity,x.[Unit of Measure Code]";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<script>Calculate(); </script>", false);
         }
 
-        protected void btnTop_Click(object sender, EventArgs e)
-        {
-            Boolean fileOK = false;
-            String path = Server.MapPath("~/photo/");
-            if (fuTop.HasFile)
-            {
-                String fileExtension = System.IO.Path.GetExtension(fuTop.FileName).ToLower();
+        //protected void btnTop_Click(object sender, EventArgs e)
+        //{
+        //    Boolean fileOK = false;
+        //    String path = Server.MapPath("~/photo/");
+        //    if (fuTop.HasFile)
+        //    {
+        //        String fileExtension = System.IO.Path.GetExtension(fuTop.FileName).ToLower();
 
-                if (fileExtension == ".gif" || fileExtension == ".png" || fileExtension == ".jpeg" || fileExtension == ".jpg")
-                {
-                    fileOK = true;
-                }
+        //        if (fileExtension == ".gif" || fileExtension == ".png" || fileExtension == ".jpeg" || fileExtension == ".jpg")
+        //        {
+        //            fileOK = true;
+        //        }
 
-            }
+        //    }
 
-            if (fileOK)
-            {
-                try
-                {
-                    // Load the image.
-                    System.Drawing.Image image1 = System.Drawing.Image.FromStream(fuTop.FileContent);
-                    // Save the image in JPEG format.
-                    image1.Save(path + hfItemNo.Value + "-top.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+        //    if (fileOK)
+        //    {
+        //        try
+        //        {
+        //            // Load the image.
+        //            System.Drawing.Image image1 = System.Drawing.Image.FromStream(fuTop.FileContent);
+        //            // Save the image in JPEG format.
+        //            image1.Save(path + hfItemNo.Value + "-top.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                     
-                    Response.Write("<script>alert('File uploaded!');</script>");
-                    GetData(hfItemNo.Value);
-                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<script>Calculate(); </script>", false);
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("<script>alert('File could not be uploaded.');</script>");
-                }
-            }
-            else
-            {
-                Response.Write("<script>alert('Cannot accept files of this type.');</script>");
-            }
-            ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<script>Calculate(); </script>", false);
+        //            Response.Write("<script>alert('File uploaded!');</script>");
+        //            GetData(hfItemNo.Value);
+        //            ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<script>Calculate(); </script>", false);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Response.Write("<script>alert('File could not be uploaded.');</script>");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Response.Write("<script>alert('Cannot accept files of this type.');</script>");
+        //    }
+        //    ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<script>Calculate(); </script>", false);
 
-        }
+        //}
 
-        protected void btnSide_Click(object sender, EventArgs e)
-        {
-            Boolean fileOK = false;
-            String path = Server.MapPath("~/photo/");
-            if (fuSide.HasFile)
-            {
-                String fileExtension = System.IO.Path.GetExtension(fuSide.FileName).ToLower();
+        //protected void btnSide_Click(object sender, EventArgs e)
+        //{
+        //    Boolean fileOK = false;
+        //    String path = Server.MapPath("~/photo/");
+        //    if (fuSide.HasFile)
+        //    {
+        //        String fileExtension = System.IO.Path.GetExtension(fuSide.FileName).ToLower();
 
-                if (fileExtension == ".gif" || fileExtension == ".png" || fileExtension == ".jpeg" || fileExtension == ".jpg")
-                {
-                    fileOK = true;
-                }
+        //        if (fileExtension == ".gif" || fileExtension == ".png" || fileExtension == ".jpeg" || fileExtension == ".jpg")
+        //        {
+        //            fileOK = true;
+        //        }
 
-            }
+        //    }
 
-            if (fileOK)
-            {
-                try
-                {
-                    // Load the image.
-                    System.Drawing.Image image1 = System.Drawing.Image.FromStream(fuSide.FileContent);
-                    // Save the image in JPEG format.
-                    image1.Save(path + hfItemNo.Value + "-side.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+        //    if (fileOK)
+        //    {
+        //        try
+        //        {
+        //            // Load the image.
+        //            System.Drawing.Image image1 = System.Drawing.Image.FromStream(fuSide.FileContent);
+        //            // Save the image in JPEG format.
+        //            image1.Save(path + hfItemNo.Value + "-side.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
-                    Response.Write("<script>alert('File uploaded!');</script>");
-                    GetData(hfItemNo.Value);
-                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<script>Calculate(); </script>", false);
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("<script>alert('File could not be uploaded.');</script>");
-                }
-            }
-            else
-            {
-                Response.Write("<script>alert('Cannot accept files of this type.');</script>");
-            }
-            ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<script>Calculate(); </script>", false);
-        }
+        //            Response.Write("<script>alert('File uploaded!');</script>");
+        //            GetData(hfItemNo.Value);
+        //            ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<script>Calculate(); </script>", false);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Response.Write("<script>alert('File could not be uploaded.');</script>");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Response.Write("<script>alert('Cannot accept files of this type.');</script>");
+        //    }
+        //    ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<script>Calculate(); </script>", false);
+        //}
 
         protected void btnSmear_Click(object sender, EventArgs e)
         {

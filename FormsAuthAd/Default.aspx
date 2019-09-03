@@ -275,28 +275,28 @@
                     <td colspan="5">
                         <table class="notes-table">
                             <tr class="tabledivider">
-                                <td class="header notes-item photowidth">Photo - Top</td>
+                                <%--<td class="header notes-item photowidth">Photo - Top</td>
                                 <td class="photodivider"></td>
                                 <td class="header notes-item photowidth">Photo - Side</td>
-                                <td class="photodivider"></td>
+                                <td class="photodivider"></td>--%>
                                 <td class="header notes-item photowidth">Photo - Smear</td>
                             </tr>
                             <tr>
-                                <td class="notes-item center"><asp:Image ID="imgTop" CssClass="ImageSize" runat="server" /></td>
+                                <%--<td class="notes-item center"><asp:Image ID="imgTop" CssClass="ImageSize" runat="server" /></td>
                                 <td></td>
                                 <td class="notes-item center"><asp:Image ID="imgSide" CssClass="ImageSize" runat="server" /></td>
-                                <td></td>
+                                <td></td>--%>
                                 <td class="notes-item center"><asp:Image ID="imgSmear" CssClass="ImageSize" runat="server" /></td>
                             </tr>
                             <tr class="zerodivider">
-                                <td class="notes-item">
+                                <%--<td class="notes-item">
                                     <table class="notes-table"><tr><td><asp:FileUpload ID="fuTop" CssClass="FileUpload disable" runat="server" /></td><td class="photodivider"><asp:Button ID="lbtnTop" CssClass="upload disable" OnClick="btnTop_Click" runat="server"></asp:Button></td></tr></table>
                                     </td>
                                 <td></td>
                                 <td class="notes-item">
                                     <table class="notes-table"><tr><td><asp:FileUpload ID="fuSide" CssClass="FileUpload disable" runat="server" /></td><td class="photodivider"><asp:Button ID="lbtnSide" CssClass="upload disable" OnClick="btnSide_Click" runat="server"></asp:Button></td></tr></table>
                               </td>
-                                <td></td>
+                                <td></td>--%>
                                 <td class="notes-item">
                                     <table class="notes-table"><tr><td><asp:FileUpload ID="fuSmear" CssClass="FileUpload disable" runat="server" /></td><td class="photodivider"><asp:Button ID="lbtnSmear" CssClass="upload disable" OnClick="btnSmear_Click" runat="server"></asp:Button></td></tr></table>
                               </td>

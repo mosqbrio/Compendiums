@@ -220,24 +220,6 @@ namespace Compendiums {
         protected global::System.Web.UI.WebControls.GridView gvBom;
         
         /// <summary>
-        /// imgTop control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgTop;
-        
-        /// <summary>
-        /// imgSide control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgSide;
-        
-        /// <summary>
         /// imgSmear control.
         /// </summary>
         /// <remarks>
@@ -245,42 +227,6 @@ namespace Compendiums {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgSmear;
-        
-        /// <summary>
-        /// fuTop control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fuTop;
-        
-        /// <summary>
-        /// lbtnTop control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button lbtnTop;
-        
-        /// <summary>
-        /// fuSide control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fuSide;
-        
-        /// <summary>
-        /// lbtnSide control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button lbtnSide;
         
         /// <summary>
         /// fuSmear control.
