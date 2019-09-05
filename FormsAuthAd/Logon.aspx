@@ -13,7 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.4" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.5.1" />
 </head>
 <body class="login-bg">
     <!-- Navigation -->

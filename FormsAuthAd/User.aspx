@@ -13,7 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/jquery-ui.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.5" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.5.1" />
     <script src="vendor/jquery/jquery-1.12.4.js"></script>
     <script src="vendor/jquery/jquery-ui.js"></script>
 
