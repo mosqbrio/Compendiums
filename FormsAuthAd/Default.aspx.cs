@@ -133,7 +133,7 @@ ELSE 'LB' END)'DDL'
 FROM [SUNBASKET_1000_TEST].[dbo].[Receiving$Production BOM Line] x
 LEFT JOIN [SUNBASKET_1000_TEST].[dbo].[Receiving$Item] y ON y.No_=x.No_
 LEFT JOIN [SUNBASKET_1000_TEST].[dbo].[Receiving$Item Unit of Measure] z ON z.[Item No_]=x.No_
-WHERE x.[Production BOM No_]='" + item + @"'
+WHERE x.[Production BOM No_]='" + item + @"' AND (([Starting Date]<=GETDATE() AND [Ending Date]>=GETDATE()) OR ([Starting Date]<=GETDATE() AND [Ending Date]='1753-01-01') OR ([Starting Date]='1753-01-01' AND [Ending Date]>=GETDATE()))
 GROUP BY x.No_,x.Description,x.Quantity,x.[Unit of Measure Code]";
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CompendiumsConnectionString2"].ConnectionString);
                 con.Open();
